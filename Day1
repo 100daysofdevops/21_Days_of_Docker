@@ -1,0 +1,27 @@
+# Docker hello world
+
+docker container run hello-world
+
+# Pull your first docker image
+
+docker image pull alpine
+
+# To list the downloaded images on your system
+
+docker image ls
+
+# Running your first docker container with the downloaded alpine image
+
+docker container run apline ls -l
+
+# To check all the running container in Docker, run the below command
+
+docker container ls
+
+# To check all the container (running and stopped)
+
+docker container ls -a
+
+# first interactive container
+
+docker container run -it alpine /bin/sh
