@@ -10,7 +10,7 @@ Status: Downloaded newer image for fedora:latest
 f8224776247d11070956f42671b646fbcd9d2088ec305b34e87e4e7b53612a33
 docker: Error response from daemon: OCI runtime create failed: container_linux.go:346: starting container process caused "exec: \"/bin/python\": stat /bin/python: no such file or directory": unknown.
 
-Steps to Replicate
+Steps to Replicate the issue
 1: Create a folder in your home directory
 mkdir /home/prashant/nginx
 cd /home/prashant/nginx
