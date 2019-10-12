@@ -25,3 +25,28 @@ docker container ls -a
 # first interactive container
 
 docker container run -it alpine /bin/sh
+
+# Running Container in detached mode
+
+docker container run -dt alpine sh
+
+# Running your first nginx container
+
+docker container run -dt nginx
+
+# To find out the IP of the container
+
+$ docker container inspect 21509d0eb527 |grep IPAddress
+
+# Docker Container with Port Binding
+
+docker container run --name mynginx -dt -p 8080:80 nginx
+
+# To check the layer of nginx image
+
+docker image history nginx
+
+# Bind mount a Docker Volume
+docker container run --name mynginx  -v /home/prashant/nginx:/usr/share/nginx/html -dt -p 8080:80 nginx
+
+
