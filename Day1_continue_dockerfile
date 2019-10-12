@@ -1,0 +1,4 @@
+# To build a Dockerfile
+
+docker build -t <tag name> .
+
