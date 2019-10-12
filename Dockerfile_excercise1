@@ -1,0 +1,31 @@
+# Create a Dockerfile
+
+FROM busybox
+RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+
+# Build the Image
+docker build -t mylayer1 .
+ 
+# Check the size of the image
+docker image ls
+   
+   
+# Now modify the Dockerfile
+
+FROM busybox
+RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+RUN rm -rf /tmp/test1
+RUN rm -rf /tmp/test2
+
+# Build the Image again
+docker build -t mylayer2 .
+ 
+# Check the size of the image
+docker image ls
+
+Why the size of the image is same, even after removing file?
+
+
+   
