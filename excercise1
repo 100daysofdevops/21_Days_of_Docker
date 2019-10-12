@@ -1,0 +1,28 @@
+# I am trying to boot the simple http server but its failing due to this error, now its your turn to debug this issue
+docker run -d -p 8090:9099 --name mytestserver -w /opt -v /home/prashant/nginx:/opt fedora:latest /bin/python -m SimpleHTTPServer 9099
+
+$ docker run -d -p 8090:9099 --name mytestserver -w /opt -v /home/prashant/nginx:/opt fedora:latest /bin/python -m SimpleHTTPServer 9099
+Unable to find image 'fedora:latest' locally
+latest: Pulling from library/fedora
+9908e4690737: Pull complete 
+Digest: sha256:8a91dbd4b9d283ca1edc2de5dbeef9267b68bb5dae2335ef64d2db77ddf3aa68
+Status: Downloaded newer image for fedora:latest
+f8224776247d11070956f42671b646fbcd9d2088ec305b34e87e4e7b53612a33
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:346: starting container process caused "exec: \"/bin/python\": stat /bin/python: no such file or directory": unknown.
+
+Steps to Replicate
+1: Create a folder in your home directory
+mkdir /home/prashant/nginx
+cd /home/prashant/nginx
+
+2: Create a test index.html file
+echo "This is my test html file" >> index.html
+
+3: Execute this command
+
+docker run -d -p 8090:9099 --name <give any name to your container> -w /opt -v <give the location of your home directory>:/opt fedora:latest /bin/python -m SimpleHTTPServer 9099
+
+
+docker run -d -p 8090:9099 --name mytestserver -w /opt -v /home/prashant/nginx:/opt fedora:latest /bin/python -m SimpleHTTPServer 9099
+
+
