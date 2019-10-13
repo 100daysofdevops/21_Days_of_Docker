@@ -1,0 +1,69 @@
+# Let's try to replicate this issue first
+
+$ docker run -d -p 8090:9099 --name mytestserver -w /opt -v /home/prashant/nginx:/opt fedora:latest /bin/python -m SimpleHTTPServer 9099
+bb01ba473f50376d840982af800fda167abaef8de4b8622e07747d32d6b4fc71
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:346: starting container process caused "exec: \"/bin/python\": stat /bin/python: no such file or directory": unknown.
+
+# Despite of the error, fedora image is downloaded locally
+$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+fedora              latest              9eff96f4c827        2 weeks ago         248MB
+
+# Let try to login to the server
+$ docker container run -it fedora bash
+[root@247866338edc /]# 
+
+# Check if the Python binary exist
+
+[root@247866338edc /]# ls -l /bin/python
+ls: cannot access '/bin/python': No such file or directory
+
+
+# If you try to check it using wildcard
+
+[root@247866338edc /]# ls -l /bin/python*
+lrwxrwxrwx. 1 root root     9 Jul  9 16:36 /bin/python3 -> python3.7
+-rwxr-xr-x. 1 root root 16680 Jul  9 16:37 /bin/python3.7
+-rwxr-xr-x. 1 root root 16680 Jul  9 16:37 /bin/python3.7m
+
+* As you can see the version of python available in fedora latest image is python3
+
+
+# Now try to import SimpleHTTPServer module locally
+
+[root@247866338edc /]# python3
+Python 3.7.4 (default, Jul  9 2019, 16:32:37) 
+[GCC 9.1.1 20190503 (Red Hat 9.1.1-1)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import SimpleHTTPServer
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'SimpleHTTPServer'
+
+# In case of Python3  SimpleHTTPServer is replaced by http.server
+
+>>> import http.server
+>>> 
+
+https://stackoverflow.com/questions/7943751/what-is-the-python-3-equivalent-of-python-m-simplehttpserver
+
+
+# Now the final command will look like this
+$ docker run -d -p 8090:9099 --name mytestserver -w /opt -v /home/prashant/nginx:/opt fedora:latest /bin/python3 -m http.server 9099
+d3b3298424b881e65461b18cad7a6fb66b42c3c323d3b7928df8424392bbf26a
+
+# To check if server is running
+$ docker ps -l
+CONTAINER ID  IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+d3b3298424b8  fedora:latest       "/bin/python3 -m htt…"   4 seconds ago       Up 3 seconds        0.0.0.0:8090->9099/tcp   mytestserver
+
+# To test it
+
+$ curl localhost:8090
+this is coming from Python HTTP module
+
+# Other ways you can debug these kind of issue, is via docker logs command but in this case it's not very helpful
+# docker logs <container id>
+$ docker logs d3b3298424b8
+
+NOTE: The main idea of this excercise is to get you familiar how to debug any container issue.
