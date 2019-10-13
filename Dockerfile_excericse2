@@ -1,0 +1,6 @@
+FROM centos
+RUN mkdir -p ~/mytestdir
+RUN useradd -ms /bin/bash mytestuser
+USER mytestuser
+RUN mkdir -p /etc/mytestuser
+RUN echo "Config data for mytestuser" >> /etc/mytestuser/mytestuser.conf
