@@ -19,3 +19,7 @@ http://100daysofdevops.com/21-days-of-docker-day-4-docker-container-under-the-ho
 # Day 5
 
 http://100daysofdevops.com/21-days-of-docker-day-5-introduction-to-dockerfile/
+
+# Day 6
+
+http://100daysofdevops.com/21-days-of-docker-day-6-introduction-to-dockerfile-part-2/
