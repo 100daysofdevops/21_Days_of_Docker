@@ -1,0 +1,110 @@
+# Let's try to replicate the issue first
+FROM busybox
+RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+
+
+# Try to build an image out of this Dockerfile
+
+$ docker build -t mylayer1 .
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM busybox
+ ---> 19485c79a9bb
+Step 2/3 : RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+ ---> Running in 2495248f03df
+50+0 records in
+50+0 records out
+52428800 bytes (50.0MB) copied, 0.030272 seconds, 1.6GB/s
+Removing intermediate container 2495248f03df
+ ---> 4c557085e440
+Step 3/3 : RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+ ---> Running in aca8401f91cc
+50+0 records in
+50+0 records out
+52428800 bytes (50.0MB) copied, 0.029855 seconds, 1.6GB/s
+Removing intermediate container aca8401f91cc
+ ---> bfbfff240e48
+Successfully built bfbfff240e48
+Successfully tagged mylayer1:latest
+
+## Check the image size
+$  docker image ls
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+mylayer1              latest              bfbfff240e48        4 seconds ago       106MB
+
+
+## Let's make little modification to the Dockefile by trying to remove these two files
+FROM busybox
+RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+RUN rm -rf /tmp/test1
+RUN rm -rf /tmp/test2
+
+## Try to build the image again
+$ docker build -t mylayer2 .
+Sending build context to Docker daemon  2.048kB
+Step 1/5 : FROM busybox
+ ---> 19485c79a9bb
+Step 2/5 : RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+ ---> Using cache
+ ---> 4c557085e440
+Step 3/5 : RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+ ---> Using cache
+ ---> bfbfff240e48
+Step 4/5 : RUN rm -rf /tmp/test1
+ ---> Running in 9059f97edae0
+Removing intermediate container 9059f97edae0
+ ---> 3987aea24cc7
+Step 5/5 : RUN rm -rf /tmp/test2
+ ---> Running in 9dde88d940ee
+Removing intermediate container 9dde88d940ee
+ ---> fd617a5810fa
+Successfully built fd617a5810fa
+Successfully tagged mylayer2:latest
+
+* Check the image size
+$ docker image ls
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+mylayer2              latest              fd617a5810fa        4 seconds ago       106MB
+
+
+
+* It's the same, this doesn't look, right? As we introduce two more new layer 
+
+RUN rm -rf /tmp/test1
+RUN rm -rf /tmp/test2
+
+# Image is just the collection of layer, and we are deleting test1 and test2 at different layer and that is the reason the size of the image is the same
+* Let's move those remove instruction in the same layer
+
+FROM busybox
+RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50 && rm -rf /tmp/test1
+RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50 && rm -rf /tmp/test2
+
+# Re-build the image
+$ docker build -t mylayer3 .
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM busybox
+ ---> 19485c79a9bb
+Step 2/3 : RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50 && rm -rf /tmp/test1
+ ---> Running in 58ecae5b4282
+50+0 records in
+50+0 records out
+52428800 bytes (50.0MB) copied, 0.034398 seconds, 1.4GB/s
+Removing intermediate container 58ecae5b4282
+ ---> 062fa630bd3d
+Step 3/3 : RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50 && rm -rf /tmp/test2
+ ---> Running in 493d7e59ea5b
+50+0 records in
+50+0 records out
+52428800 bytes (50.0MB) copied, 0.029036 seconds, 1.7GB/s
+Removing intermediate container 493d7e59ea5b
+ ---> 13f26e00997f
+Successfully built 13f26e00997f
+Successfully tagged mylayer3:latest
+
+#Check the size
+$ docker image ls
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+mylayer3              latest              13f26e00997f        7 seconds ago       1.22MB
+Looks promising :-)
