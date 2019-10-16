@@ -23,3 +23,19 @@ http://100daysofdevops.com/21-days-of-docker-day-5-introduction-to-dockerfile/
 # Day 6
 
 http://100daysofdevops.com/21-days-of-docker-day-6-introduction-to-dockerfile-part-2/
+
+# Day 7
+
+http://100daysofdevops.com/use-multi-stage-builds-with-dockerfile/
+
+# Day 8
+
+http://100daysofdevops.com/21-days-of-docker-day-8-docker-images-and-layers/
+
+# Day 9
+
+http://100daysofdevops.com/21-days-of-docker-day-9-docker-networking-part-1/
+
+# Day 10
+
+http://100daysofdevops.com/21-days-of-docker-day-10-docker-networking-part-2/
