@@ -1,4 +1,4 @@
-FROM jfloff/alpine-python:3.6-onbuild
+FROM frolvlad/alpine-python3
 
 
 # Create app directory
