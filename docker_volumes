@@ -1,0 +1,71 @@
+# To Check storage driver in your system
+$ docker info |grep Storage
+ Storage Driver: overlay2
+
+# To check docker’s local storage area
+$ docker info |grep "Docker Root Dir"
+ Docker Root Dir: /var/lib/docker
+ 
+ # To Change the storage driver
+ sudo systemctl stop docker
+ 
+ $ sudo cat daemon.json
+{
+  "storage-driver": "devicemapper"
+}
+
+Start the docker daemon
+
+sudo systemctl start docker
+
+NOTE: Changing storage driver wiped out all the image
+
+# To create a volume
+$ docker volume create mytestvol
+
+# To verify it
+$ docker volume ls
+
+# Run a container using this Volume
+
+$ docker container run -dt --name mytestvol -v mytestvol:/etc centos bash
+
+# Check the location of Volume in Host system
+$ docker volume inspect mytestvol |grep Mountpoint
+
+# To delete a volume
+$ docker volume rm mytestvol
+
+# Create the volume using Dockerfile
+FROM busybox
+RUN mkdir /mytestvol
+RUN echo "testing volume" >> /mytestvol/test.txt
+VOLUME /mytestvol
+
+# Build the image
+docker build -t mytestvol .
+
+# Run the container using this Volume
+docker container run -dt --name mytestvol 95aed0e870d1 sh
+
+# Verify the volume
+docker volume ls
+
+# Assign a name to your volume
+docker container run -dt --name mytestvol01 -v testvol:/mytestvol 95aed0e870d1 sh
+
+# Verify the volume
+docker volume ls
+
+# Bind mount the volume
+docker run -dt --name mybindmount -v ~/index:/usr/share/nginx/html -p 8080:80 nginx
+
+# Different way to specify bind mount
+docker container run -dt --name mybindmount01 --mount type=bind,source=/home/cloud_user/index,target=/usr/share/nginx/html -p 8081:80 nginx
+
+# Read only bind mount
+docker container run -dt --name mybindmount03 --mount type=bind,source=/home/cloud_user/index,target=/usr/share/nginx/html,readonly -p 8082:80 nginx
+
+# Remove all unused local volumes
+$ docker volume prune
+ 
