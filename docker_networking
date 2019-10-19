@@ -1,0 +1,77 @@
+# To check docker0 interface in your system
+$ ifconfig docker0
+
+# Check the gateway IP
+$ docker network inspect bridge |grep Gateway
+
+# Check the subnet range
+$ docker network inspect bridge |grep Subnet
+
+# Spin the new container
+$ docker container run -dt centos bash
+
+# Run a command in a running container
+$ docker container exec -it 887a184c48 bash
+
+# Verify the IP
+# ip addr list
+
+NOTE: It should be from the same subnet range as #8
+
+# How to change the default subnet range
+/etc/docker/daemon.json 
+
+{
+  "bip": "172.20.0.1/16"
+}
+
+# Restart Docker daemon
+sudo systemctl restart docker
+
+# List networks
+$ docker network ls
+
+# To check the supported driver
+$ docker info |grep -i Network
+
+# Create user defined bridge
+$ docker network create my-test-bridge-network
+
+# List networks
+$ docker network ls
+
+# Check the subnet range
+$ docker network inspect my-test-bridge-network |grep Subnet
+
+# Create a container with a user-defined network 
+$ docker container run -dt --name mybridgenet --network my-test-bridge-network centos bash
+
+# Connect any existing container on the fly to this network
+$ docker network connect my-test-bridge-network 887a184c48e4
+
+# Removing a container from the network\
+docker network disconnect <NETWORK> <CONTAINER>
+
+# To create a network with own customize subnet range
+$ docker network create --subnet 172.30.0.0/24 --gateway 172.30.0.1 my-test-subnet
+
+# To assign specific IP to container
+$ docker container run -dt --name mytest02 --ip 172.30.0.3  --network my-test-subnet centos bash
+
+# Remove a network
+$ docker network rm my-test
+
+# Remove all unused network
+docker network prune
+
+# Create container using default Host Network
+$ docker container run -dt --name myhost --network host centos bash
+
+# Verify all the ip
+$ ip addr list
+
+# Create container using none network
+$ docker container run -dt --name mynone --network none centos bash
+
+# Verify all the ip
+$ ip addr list
