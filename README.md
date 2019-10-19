@@ -47,3 +47,7 @@ http://100daysofdevops.com/21-days-of-docker-day-11-docker-networking-part-3/
 # Day 12
 
 http://100daysofdevops.com/21-days-of-docker-day-12-docker-storage-part-1/2/
+
+# Day 13
+
+http://100daysofdevops.com/21-days-of-docker-day-13-docker-storage-part-2/
