@@ -10,6 +10,11 @@ $ docker network inspect bridge |grep Subnet
 # Spin the new container
 $ docker container run -dt centos bash
 
+# Verify container IP
+docker container inspect <container id> |grep -i IPaddress
+
+OR
+
 # Run a command in a running container
 $ docker container exec -it 887a184c48 bash
 
