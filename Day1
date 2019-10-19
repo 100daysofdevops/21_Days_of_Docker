@@ -1,6 +1,94 @@
-# Docker hello world
+# Slack Channel Link
+https://join.slack.com/t/100daysofdevops/shared_invite/enQtNzg1MjUzMzQzMzgxLWM4Yjk0ZWJiMjY4ZWE3ODBjZjgyYTllZmUxNzFkNTgxZjQ4NDlmZjkzODAwNDczOTYwOTM2MzlhZDNkM2FkMDA 
+
+# 100 days of Devops
+http://100daysofdevops.com/day-100-100-days-of-devops/
+
+# First three days
+
+http://100daysofdevops.com/21-days-of-docker-day-1%e2%80%8a-%e2%80%8aintroduction-to-docker/
+http://100daysofdevops.com/day-2%e2%80%8a-%e2%80%8afirst-docker-container/
+http://100daysofdevops.com/21-days-of-docker-day-3%e2%80%8a-%e2%80%8abuilding-container-continue/
+
+# Docker Installation Script
+https://get.docker.com/
+
+# Install specific docker version manually
+https://docs.docker.com/install/linux/docker-ce/centos/
+
+# Docker hello world using container command
 
 docker container run hello-world
+
+# Docker Hub
+ https://hub.docker.com/
+ 
+# Docker Hub Pricing
+https://hub.docker.com/pricing
+
+# Amazon Elastic Container Registry
+https://aws.amazon.com/ecr/
+
+# Nexus Docker Registry
+https://help.sonatype.com/repomanager3/formats/docker-registry
+
+# Artifactory Registry
+https://jfrog.com/artifactory/ 
+
+# Docker hello world using run
+$ docker run hello-world
+
+# Location of Docker Image in local filesystem
+$ docker image inspect hello-world |grep var
+
+# Docker container run vs docker run
+
+https://stackoverflow.com/questions/51247609/what-is-the-difference-between-docker-run-and-docker-container-run
+https://github.com/moby/moby/pull/26025
+
+# Docker command to show running container
+$ docker container ls
+
+# To show all the containers
+$ docker container ls -a
+
+# If you want to check the non-truncated output
+$ docker container ls -a --no-trunc
+
+# If you want just the container id
+$ docker container ls -a -q
+
+# Container funny name
+https://github.com/moby/moby/blob/master/pkg/namesgenerator/names-generator.go
+
+# Login to Docker Container
+$ docker container run -it --name mytestcont ubuntu bash
+
+# Running container in detached mode
+$ docker container run -dt ubuntu bash
+
+# Run a command in a running container
+$ docker container exec -it ffc634304b65 bash
+
+# Running nginx container
+$ docker container run -d nginx  
+
+# Finding Container IP Address
+$ docker container inspect <container id or name>|grep IPAddress
+
+# Publish Container Port to host Port
+docker container run -d -p 10080:80 nginx
+
+# To test it
+curl localhost:10080
+
+# Bind mount a volume
+$ mkdir index
+$ echo "This is coming from bind mount" >> index/index.html
+$ docker container run -d -p 10090:80 -v /Users/plakhera/Downloads/index:/usr/share/nginx/html nginx
+
+# To test it
+curl localhost:10090
 
 # Pull your first docker image
 
@@ -13,40 +101,3 @@ docker image ls
 # Running your first docker container with the downloaded alpine image
 
 docker container run apline ls -l
-
-# To check all the running container in Docker, run the below command
-
-docker container ls
-
-# To check all the container (running and stopped)
-
-docker container ls -a
-
-# first interactive container
-
-docker container run -it alpine /bin/sh
-
-# Running Container in detached mode
-
-docker container run -dt alpine sh
-
-# Running your first nginx container
-
-docker container run -dt nginx
-
-# To find out the IP of the container
-
-$ docker container inspect 21509d0eb527 |grep IPAddress
-
-# Docker Container with Port Binding
-
-docker container run --name mynginx -dt -p 8080:80 nginx
-
-# To check the layer of nginx image
-
-docker image history nginx
-
-# Bind mount a Docker Volume
-docker container run --name mynginx  -v /home/prashant/nginx:/usr/share/nginx/html -dt -p 8080:80 nginx
-
-
