@@ -68,5 +68,10 @@ RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
 RUN rm -rf /tmp/test1
 RUN rm -rf /tmp/test2
 
+# To cleanup images
+docker image prune
 
+# To create a new image from a container change
+
+docker container commit <container id> <image name>
 
