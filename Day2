@@ -1,7 +1,9 @@
 # To search for particular image
+$ docker search <image name>
 $ docker search centos
 
 # To pull a particular image
+$ docker image pull <image name>
 $ docker image pull centos
 
 # Run a container(Combination of image pull + run)
@@ -27,8 +29,43 @@ docker build -t <tag name> .
 
 # Dockefile copy
 FROM busybox
-ADD test.txt /tmp
+COPY test.txt /tmp
 CMD ["sh"]
 
 # Dockerfile add
+FROM busybox
+ADD https://github.com/100daysofdevops/100daysofdevops/blob/master/README.md /tmp
+CMD ["sh"]
+
+# Dockerfile cmd
+FROM busybox
+CMD ["sh"]
+
+# Dockerfile entrypoint
+FROM busybox
+ENTRYPOINT ["/bin/ping"]
+
+# To check the image
+docker image ls
+
+# Display detailed information on one or more images
+$ docker image inspect centos
+
+# Dockerignore
+$ cat .dockerignore 
+
+# Containers, Images, Local Volume and Cache Size
+docker system df
+
+# For verbose output
+docker system df -v
+
+# To test the layer 
+FROM busybox
+RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
+RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
+RUN rm -rf /tmp/test1
+RUN rm -rf /tmp/test2
+*/*.txt
+
 
