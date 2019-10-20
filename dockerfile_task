@@ -1,0 +1,5 @@
+* Build a Dockerfile using centos7
+* Make sure its using apache version 2.4.6-90.el7.centos
+* WORKDIR must be set to /var/www/html
+* ADD your own custom index.html
+* HEALTHCHECK directive to test a container
