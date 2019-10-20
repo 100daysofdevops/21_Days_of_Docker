@@ -53,6 +53,7 @@ $ docker image inspect centos
 
 # Dockerignore
 $ cat .dockerignore 
+*/*.txt
 
 # Containers, Images, Local Volume and Cache Size
 docker system df
@@ -66,6 +67,6 @@ RUN dd if=/dev/zero of=/tmp/test1 bs=1M count=50
 RUN dd if=/dev/zero of=/tmp/test2 bs=1M count=50
 RUN rm -rf /tmp/test1
 RUN rm -rf /tmp/test2
-*/*.txt
+
 
 
