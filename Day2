@@ -1,0 +1,34 @@
+# To search for particular image
+$ docker search centos
+
+# To pull a particular image
+$ docker image pull centos
+
+# Run a container(Combination of image pull + run)
+docker container run -d centos bash
+
+# Show the history of an image
+$ docker image history centos
+
+# Dockerfile reference
+https://docs.docker.com/engine/reference/builder/
+
+# Dockerfile
+FROM ubuntu
+RUN apt-get update
+RUN apt-get -y install nginx
+CMD ["nginx","-g","daemon off;"]
+
+# To build the image out from Dockerfile (without tag)
+docker build .
+
+# To build the image out from Dockerfile
+docker build -t <tag name> .
+
+# Dockefile copy
+FROM busybox
+ADD test.txt /tmp
+CMD ["sh"]
+
+# Dockerfile add
+
