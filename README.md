@@ -1,5 +1,16 @@
 # 21_Days_of_Docker
 
+# YouTube Link
+
+# Day 1 - - Introduction to Docker
+
+https://www.youtube.com/watch?v=sDRSnSx9Ilc 
+
+# Day 2 - Introduction to Docker Images and Dockerfile 
+ https://www.youtube.com/watch?v=Oh1oIm5QEWs
+
+
+
 # Day 1
 
 http://100daysofdevops.com/21-days-of-docker-day-1%e2%80%8a-%e2%80%8aintroduction-to-docker/
