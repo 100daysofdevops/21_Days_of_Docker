@@ -2,7 +2,7 @@
 
 # YouTube Link
 
-# Day 1 - - Introduction to Docker
+# Day 1 - Introduction to Docker
 
 https://www.youtube.com/watch?v=sDRSnSx9Ilc 
 
