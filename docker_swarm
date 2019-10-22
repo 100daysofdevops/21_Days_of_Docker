@@ -10,12 +10,8 @@ docker node ls
 
 docker node inspect <node id>
 
-
 # Placement constraints
 
 docker service create --name myserviceconstraint --constraint node.labels.region==us-west-2 replicas 3 nginx
 
 https://docs.docker.com/engine/reference/commandline/service_create/
-
-
-
