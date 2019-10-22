@@ -22,3 +22,8 @@ $ docker network create --driver overlay myoverlaynetwork
 # You can also encrypt data exchanged between containers on different nodes on the overlay network
 
 $ docker network create --opt encrypted --driver overlay my-multi-host-network
+
+# Creating Swarm using Template
+
+
+
