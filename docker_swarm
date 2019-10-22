@@ -1,3 +1,40 @@
+# Initialize the swarm cluster
+docker swarm init --advertise-addr <ip>
+
+# To get the swarm token(in case if you missed that)
+docker swarm join-token worker
+
+# To add a worker node to the swarm
+
+docker swarm join --token 
+
+# To list all nodes in the cluster
+docker node ls
+
+# To create a service
+docker service create --name myrepservice --replicas 3 nginx
+
+# To list all services
+docker service ls
+
+# List the tasks of one or more services
+docker service ps <service name>
+
+# To remove a service
+
+docker service rm <service name>
+
+# To Scale up service
+
+docker service scale SERVICE=REPLICAS
+
+OR 
+
+We can scale multiple service
+
+docker service scale SERVICE=REPLICAS [SERVICE=REPLICAS...]
+
+
 # How to add label to specific node
 
 docker node update --label-add region=us-west-2 <node id>
@@ -24,6 +61,21 @@ $ docker network create --driver overlay myoverlaynetwork
 $ docker network create --opt encrypted --driver overlay my-multi-host-network
 
 # Creating Swarm using Template
+
+# Swarm Manager
+
+$ docker swarm join-token manager
+
+# Manager Only Nodes
+
+docker node update --availability drain <NODE>
+
+# Recover from losing the quorum
+
+
+docker swarm init --force-new-cluster --advertise-addr node01:2377
+
+
 
 
 
