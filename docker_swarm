@@ -1,0 +1,21 @@
+# How to add label to specific node
+
+docker node update --label-add region=us-west-2 <node id>
+
+# To get the node id
+
+docker node ls
+
+# To verify it
+
+docker node inspect <node id>
+
+
+# Placement constraints
+
+docker service create --name myserviceconstraint --constraint node.labels.region==us-west-2 replicas 3 nginx
+
+https://docs.docker.com/engine/reference/commandline/service_create/
+
+
+
