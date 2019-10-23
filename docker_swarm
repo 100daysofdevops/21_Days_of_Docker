@@ -51,6 +51,17 @@ docker node update --availability drain <node id>
 
 docker node update --availability active < node id>
 
+# Inspecting services
+$ docker service inspect <service name>  --pretty
+
+# Inspecting node
+
+$ docker node inspect <node id> --pretty 
+
+# Publishing port
+
+$ docker service create --name mypublishport --replicas 3 -p 80:80 nginx
+
 
 # How to add label to specific node
 
