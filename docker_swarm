@@ -62,6 +62,12 @@ $ docker node inspect <node id> --pretty
 
 $ docker service create --name mypublishport --replicas 3 -p 80:80 nginx
 
+# Locking Swarm Cluster
+docker swarm update --autolock=true
+
+# Mount volume using Swarm
+
+docker service create --name mytestvolservice --mount type=volume,source=mytestvol,target=/mytestvol nginx
 
 # How to add label to specific node
 
