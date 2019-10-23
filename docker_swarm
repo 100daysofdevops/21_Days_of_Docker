@@ -35,6 +35,23 @@ We can scale multiple service
 docker service scale SERVICE=REPLICAS [SERVICE=REPLICAS...]
 
 
+# Scaling service using update
+
+docker service update --replicas 4 <service name>
+
+# Swarm Global mode
+
+$ docker service create --name myglobalservice --mode global nginx
+
+# Draining a node
+
+docker node update --availability drain <node id>
+
+# To make that node active
+
+docker node update --availability active < node id>
+
+
 # How to add label to specific node
 
 docker node update --label-add region=us-west-2 <node id>
