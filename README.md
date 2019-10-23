@@ -72,4 +72,4 @@ http://100daysofdevops.com/21-days-of-docker-day-14-introduction-to-docker-swarm
 http://100daysofdevops.com/21-days-of-docker-day-15-introduction-to-docker-swarm-part-2/
 
 # Day 16
-(http://100daysofdevops.com/21-days-of-docker-day-16-introduction-to-docker-compose/) 
+http://100daysofdevops.com/21-days-of-docker-day-16-introduction-to-docker-compose/
