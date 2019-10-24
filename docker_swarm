@@ -90,11 +90,17 @@ https://docs.docker.com/engine/reference/commandline/service_create/
 # To create your own custom overlay network
 $ docker network create --driver overlay myoverlaynetwork
 
+# Create service using overlay network
+
+docker service create --name myoverlay --network myoverlaynetwork --replicas 3 nginx
+
 # You can also encrypt data exchanged between containers on different nodes on the overlay network
 
 $ docker network create --opt encrypted --driver overlay my-multi-host-network
 
-# Creating Swarm using Template
+# Creating Service using Template
+
+$ docker service create --name mytemplateservice --hostname="{{.Node.Hostname}}-{{.Service.Name}}" nginx
 
 # Swarm Manager
 
@@ -105,7 +111,6 @@ $ docker swarm join-token manager
 docker node update --availability drain <NODE>
 
 # Recover from losing the quorum
-
 
 docker swarm init --force-new-cluster --advertise-addr node01:2377
 
