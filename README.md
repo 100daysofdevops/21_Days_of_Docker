@@ -76,3 +76,8 @@ http://100daysofdevops.com/21-days-of-docker-day-16-introduction-to-docker-compo
 
 # Day 17
 http://100daysofdevops.com/21-days-of-docker-day-17-building-effective-docker-image/
+
+# Day 18: Docker Security
+
+http://100daysofdevops.com/21-days-of-docker-day-18-docker-security/
+
