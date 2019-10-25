@@ -73,3 +73,6 @@ http://100daysofdevops.com/21-days-of-docker-day-15-introduction-to-docker-swarm
 
 # Day 16
 http://100daysofdevops.com/21-days-of-docker-day-16-introduction-to-docker-compose/
+
+# Day 17
+http://100daysofdevops.com/21-days-of-docker-day-17-building-effective-docker-image/
