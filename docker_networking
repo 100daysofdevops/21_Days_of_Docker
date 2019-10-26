@@ -2,7 +2,7 @@
 $ ifconfig docker0
 
 # Check the gateway IP
-$ docker network inspect bridge |grep Gateway
+$ docker network inspect bridge |grep IPv4Address
 
 # Check the subnet range
 $ docker network inspect bridge |grep Subnet
