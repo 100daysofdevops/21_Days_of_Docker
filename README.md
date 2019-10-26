@@ -8,7 +8,10 @@ https://www.youtube.com/watch?v=sDRSnSx9Ilc
 
 # Day 2 - Introduction to Docker Images and Dockerfile 
  https://www.youtube.com/watch?v=Oh1oIm5QEWs
+ 
+# Day 3 - Docker Networking
 
+https://youtu.be/_NgqjyDeSJU
 
 
 # Day 1
