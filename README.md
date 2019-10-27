@@ -84,3 +84,7 @@ http://100daysofdevops.com/21-days-of-docker-day-17-building-effective-docker-im
 
 http://100daysofdevops.com/21-days-of-docker-day-18-docker-security/
 
+# Day 19: Docker Networking Deep Dive
+
+http://100daysofdevops.com/21-days-of-docker-day-19-docker-networking-deep-dive/
+
