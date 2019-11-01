@@ -43,6 +43,20 @@ docker container run -dt --volumes-from myvolshare --name mytest centos bash
 # To delete a volume
 $ docker volume rm mytestvol
 
+
+# Bind mount the volume
+docker run -dt --name mybindmount -v ~/index:/usr/share/nginx/html -p 8080:80 nginx
+
+# Different way to specify bind mount
+docker container run -dt --name mybindmount01 --mount type=bind,source=/home/cloud_user/index,target=/usr/share/nginx/html -p 8081:80 nginx
+
+# Read only bind mount
+docker container run -dt --name mybindmount03 --mount type=bind,source=/home/cloud_user/index,target=/usr/share/nginx/html,readonly -p 8082:80 nginx
+
+# Remove all unused local volumes
+$ docker volume prune
+
+
 # Create the volume using Dockerfile
 FROM busybox
 RUN mkdir /mytestvol
@@ -63,16 +77,4 @@ docker container run -dt --name mytestvol01 -v testvol:/mytestvol 95aed0e870d1 s
 
 # Verify the volume
 docker volume ls
-
-# Bind mount the volume
-docker run -dt --name mybindmount -v ~/index:/usr/share/nginx/html -p 8080:80 nginx
-
-# Different way to specify bind mount
-docker container run -dt --name mybindmount01 --mount type=bind,source=/home/cloud_user/index,target=/usr/share/nginx/html -p 8081:80 nginx
-
-# Read only bind mount
-docker container run -dt --name mybindmount03 --mount type=bind,source=/home/cloud_user/index,target=/usr/share/nginx/html,readonly -p 8082:80 nginx
-
-# Remove all unused local volumes
-$ docker volume prune
  
