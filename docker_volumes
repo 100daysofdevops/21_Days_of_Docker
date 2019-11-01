@@ -33,6 +33,13 @@ $ docker container run -dt --name mytestvol -v mytestvol:/etc centos bash
 # Check the location of Volume in Host system
 $ docker volume inspect mytestvol |grep Mountpoint
 
+# Creating data container
+docker create -v myvolshare --name myvolshare  centos bash
+
+# Share it with other container
+
+docker container run -dt --volumes-from myvolshare --name mytest centos bash
+
 # To delete a volume
 $ docker volume rm mytestvol
 
