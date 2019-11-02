@@ -1,5 +1,9 @@
 # 21_Days_of_Docker
 
+# My Road to Docker Certification
+
+http://100daysofdevops.com/my-road-to-docker-certified-associate/
+
 # YouTube Link
 
 # Day 1 - Introduction to Docker
@@ -12,6 +16,9 @@ https://www.youtube.com/watch?v=sDRSnSx9Ilc
 # Day 3 - Docker Networking
 
 https://youtu.be/_NgqjyDeSJU
+
+# Day 4 -  Docker Volumes
+https://www.youtube.com/watch?v=D3dAb8OcbUw&feature=youtu.be
 
 
 # Day 1
