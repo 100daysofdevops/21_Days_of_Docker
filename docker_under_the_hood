@@ -44,6 +44,8 @@ $ docker info |grep -i log
  # To change the logging driver
  
  $ docker container run --log-driver none -dt centos ping google.com
+ 
+# docker logs file is not available for drivers other then json-file and journald 
 
 # To check if debug mode is enabled in docker
 $ docker info |grep -i debug
