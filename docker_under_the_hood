@@ -1,0 +1,25 @@
+# --pid let the container see the host process table(!!! carefull)
+# Normal container run
+$ docker container run -it centos bash
+
+[root@83a91f678bd2 /]# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 14:45 pts/0    00:00:00 bash
+root        14     1  0 14:46 pts/0    00:00:00 ps -ef
+
+# Put the command in the background
+
+$ vim /tmp/testfile&
+
+# Let you see the host process table
+docker container run -it --pid=host centos bash
+
+# -v let you mount, the file on host to the mount point inside the container
+
+$ docker container run -it -v /:/host --privileged centos bash
+
+# --net=host open all network interface on the host to the container
+
+docker container run -it --net=host centos bash
+
+# --privileges open root and selinux priviledge on the container
