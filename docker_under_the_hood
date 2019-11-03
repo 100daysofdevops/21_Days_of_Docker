@@ -1,3 +1,4 @@
+
 # --pid let the container see the host process table(!!! carefull)
 # Normal container run
 $ docker container run -it centos bash
@@ -23,3 +24,37 @@ $ docker container run -it -v /:/host --privileged centos bash
 docker container run -it --net=host centos bash
 
 # --privileges open root and selinux priviledge on the container
+
+
+# To check the memory limit enforced via cgroup
+
+# cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+536870912
+
+OR
+
+# docker container stats <container id>
+
+# Check the logging driver
+
+$ docker info |grep -i log
+ Logging Driver: json-file
+ Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ 
+ # To change the logging driver
+ 
+ $ docker container run --log-driver none -dt centos ping google.com
+
+# To check if debug mode is enabled in docker
+$ docker info |grep -i debug
+ Debug Mode: false
+ Debug Mode: false
+
+# To enable debug mode
+cat /etc/docker/daemon.json
+ {
+ "debug": true
+ }
+ 
+ # To verify it
+ journalctl -u docker.service | tail
