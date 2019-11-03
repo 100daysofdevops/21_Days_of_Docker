@@ -6,19 +6,22 @@ http://100daysofdevops.com/my-road-to-docker-certified-associate/
 
 # YouTube Link
 
-# Day 1 - Introduction to Docker
+# Introduction to Docker
 
 https://www.youtube.com/watch?v=sDRSnSx9Ilc 
 
-# Day 2 - Introduction to Docker Images and Dockerfile 
+# Introduction to Docker Images and Dockerfile 
  https://www.youtube.com/watch?v=Oh1oIm5QEWs
  
-# Day 3 - Docker Networking
+# Docker Networking
 
 https://youtu.be/_NgqjyDeSJU
 
-# Day 4 -  Docker Volumes
+# Docker Volumes
 https://www.youtube.com/watch?v=D3dAb8OcbUw&feature=youtu.be
+
+# Docker under the hood
+https://studio.youtube.com/video/znPehmojiXI/edit
 
 
 # Day 1
