@@ -1,4 +1,14 @@
 
+# To check the memory limit enforced via cgroup
+
+# cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+536870912
+
+OR
+
+# docker container stats <container id>
+
+
 # --pid let the container see the host process table(!!! carefull)
 # Normal container run
 $ docker container run -it centos bash
@@ -26,14 +36,6 @@ docker container run -it --net=host centos bash
 # --privileges open root and selinux priviledge on the container
 
 
-# To check the memory limit enforced via cgroup
-
-# cat /sys/fs/cgroup/memory/memory.limit_in_bytes
-536870912
-
-OR
-
-# docker container stats <container id>
 
 # Check the logging driver
 
