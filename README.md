@@ -21,8 +21,7 @@ https://youtu.be/_NgqjyDeSJU
 https://www.youtube.com/watch?v=D3dAb8OcbUw&feature=youtu.be
 
 # Docker under the hood
-https://studio.youtube.com/video/znPehmojiXI/edit
-
+https://www.youtube.com/watch?v=znPehmojiXI&feature=youtu.be
 
 # Day 1
 
