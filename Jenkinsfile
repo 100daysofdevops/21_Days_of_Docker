@@ -8,6 +8,7 @@ pipeline {
           steps {
             sh 'echo "coming from jdk 7"'
             stash(name: 'Stash-file-7', includes: 'targets/**')
+            unstash 'unstash-jdk7'
           }
         }
 
