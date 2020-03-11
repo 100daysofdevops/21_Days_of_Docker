@@ -4,6 +4,12 @@ pipeline {
     stage('jdk-7') {
       parallel {
         stage('jdk-7') {
+          agent {
+            node {
+              label 'jdk-7'
+            }
+
+          }
           steps {
             sh 'echo "coming from jdk 7"'
           }
