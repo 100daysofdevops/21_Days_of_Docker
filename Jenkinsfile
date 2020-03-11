@@ -11,12 +11,7 @@ pipeline {
         }
 
         stage('jdk-8') {
-          agent {
-            node {
-              label 'jdk-8'
-            }
-
-          }
+          agent any
           steps {
             sh 'echo "Coming from jdk-8"'
           }
