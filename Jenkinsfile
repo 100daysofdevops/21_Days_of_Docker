@@ -1,14 +1,9 @@
 pipeline {
-  agent {
-    docker {
-      image 'nginx'
-    }
-
-  }
+  agent any
   stages {
-    stage('mydocker') {
+    stage('jdk-7') {
       steps {
-        sh 'echo "hello from docker"'
+        sh 'echo "coming from jdk 7"'
       }
     }
 
